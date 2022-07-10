@@ -1,0 +1,48 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{setspace}
+
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\newcommand{\e}[1]{\ensuremath{\times 10^{#1}}}
+
+\begin{document}
+
+\begin{center}
+\mbox{} \\
+{ \huge Josephson Junctions }
+\end{center}
+
+\onehalfspace
+
+\hspace*{5 mm} For most practical applications, one only needs to know fundamental constants to a few decimal places.  However, it is sometimes necessary to know fundamental constants to a higher accuracy.  For instance, if two theories make similar predictions, knowledge of a constant to a high number of decimal places may distinguish one theory as better than the other.  Historically, it was the measurement of the value of $2e/h$ via the Josephson Effect that convinced many physicists to accept quantum electrodynamics over the older quantum mechanics.  A better value of $2e/h$ allowed for a better value of the fine-structure constant, which allowed physicists to compare atomic spectra calculated by both theories against experiment.\footnote{This experiment was first successfully conducted by Parker, Taylor and Langenberg (Phys. Rev. Letters 18, 287 (1967)).  Their value for $2e/h$ was $483.5912 \pm 0.0030 \unit{MHz/\mu V}$.}  The theoretical implications of high accuracy and precision measurements of constants aside, the ability to measure the constant $2e/h$ in a condensed matter setting is itself amazing.  \\
+\hspace*{5 mm} Suppose two superconductors are separated by a thin insulator of thickness on the order of angstroms.  Then, it is possible for Cooper Pairs to tunnel across the barrier separating the two superconductors.  This lossless tunneling of Cooper Pairs across the ``Josephson Junction" - which can happen with or without a potential difference between the superconductors - is the Josephson Effect.  The tunneling supercurrent $I$ obeys the following equations:
+\begin{equation}\label{Josephson Relation 1}
+I=I_0 \sin(\phi)
+\end{equation}
+\begin{equation}\label{Josephson Relation 2}
+\frac{d\phi}{dt}=\frac{2e}{\hbar}V
+\end{equation}
+where $\phi$ is the phase difference between the two superconductors, and $V$ is the chemical potential difference between the two superconductors.\footnote{Clarke, John, "The Josephson Effect and e/h," American Journal of Physics, Vol. 38, No. 9, September 1970, pp. 1071-1095.}  Notice that the 2 in $2e/\hbar$ comes from the fact that there are two electrons per tunneling particle. \\
+\hspace*{5 mm} If we assume a constant $V$, then Eq. \ref{Josephson Relation 2} can be integrated to give $\phi=(2e V/\hbar)t+\delta$, where $\delta$ is a constant.  Plugging into Eq. \ref{Josephson Relation 1} yields:
+\begin{equation}
+I=I_0 \sin\left( \frac{2e V}{\hbar}t + \delta \right)
+\end{equation}
+If $V=0$, then $I=I_0 sin(\delta)$, and since $\delta$ can take any value, the Josephson tunneling current can vary between a maximum $+I_0$ to a minimum $-I_0$.  This is known as the DC Josephson Effect. \\
+\hspace*{5 mm} If $V=V_0+V_1\cos(\omega_0 t)$, then integrating Eq. \ref{Josephson Relation 2} and plugging into Eq. \ref{Josephson Relation 1} yields:
+\begin{equation}
+I=I_0 \sin \left( \frac{2eV_0}{\hbar} t + \frac{2eV_1}{\hbar \omega_0} sin(\omega_0 t)+\delta \right)
+\end{equation}
+which we can Fourier expand into higher harmonics as
+\begin{equation}
+I=I_0 \sum_{n=-\infty}^{\infty} J_n \left( \frac{2eV_1}{\hbar \omega_0} \right) \sin \left[ \left( n \omega_0+\frac{2eV_0}{\hbar} \right) t+\delta \right]
+\end{equation}
+where the $J_n$ in the sum denotes a Bessel function.  Note that since $2eV_0/\hbar$ will typically be a frequency larger than that measurable on an oscilloscope, the Josephson current will time average to zero unless $n \omega_0 + 2eV_0/\hbar=0$.  That is, for a fixed applied frequency $\nu=\omega_0/(2\pi)$, current spikes will occur when $V_0$ is an integer multiple of $\nu/(2e/h)$. \\
+\hspace*{5 mm} On an actual oscilloscope in XY mode, with a sweeping $V_0$ fed into the horizontal axis and current $I$ fed into the vertical axis, the Josephson Effect will manifest itself as a series of steps - known as Shapiro Steps - of width $\Delta V=G \nu/(2e/h)$, where $G$ is the gain of any preamp that might be amplifying the measured voltage difference across the junction.  This equation can be solved for $2e/h$:
+\begin{equation}\label{2e/h relation}
+\frac{2e}{h}=G \frac{\nu}{\Delta V}
+\end{equation}
+
+\end{document}

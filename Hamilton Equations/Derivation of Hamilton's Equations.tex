@@ -1,0 +1,38 @@
+\documentclass[a4paper,12pt]{
+article}
+\newcommand{\partialderiv}[2]{ \frac{ \partial #1 }{ \partial #2 } }
+\begin{document}
+
+\section*{Derivation of Hamilton's Equations}
+Define the Hamiltonian from the Lagrangian.
+\[ \mathcal{H} = \sum_j p_j \dot{q_j} - \mathcal{L} \]
+Take the partial of $\mathcal{H}$ with respect to $q_i$.  This equation is like Newton's 2nd law.
+\[ \partialderiv{ \mathcal{H} }{ q_i } =
+\sum_j p_j \partialderiv{ \dot{q_j} }{ q_i } -
+\sum_j \partialderiv{ \mathcal{L} }{ \dot{q_j} }
+\partialderiv{ \dot{q_j} }{ q_i } -
+\partialderiv{ \mathcal{L} }{ q_i } \]
+\[ \partialderiv{ \mathcal{H} }{ q_i } =
+\sum_j p_j \partialderiv{ \dot{q_j} }{ q_i } -
+\sum_j p_j \partialderiv{ \dot{q_j} }{ q_i } -
+\partialderiv{ \mathcal{L} }{ q_i } \]
+\[ \partialderiv{ \mathcal{H} }{ q_i } = -
+\partialderiv{ \mathcal{L} }{ q_i } = - \dot{p_i} \]
+\[ \dot{p_i} = - \partialderiv{ \mathcal{H} }{ q_i } \]
+Take the partial of $\mathcal{H}$ with respect to $p_i$.  This usually reproduces the definition of the canonical momentum.
+\[ \partialderiv{ \mathcal{H} }{ p_i } =
+\sum_j p_j \partialderiv{ \dot{q_j} }{ p_i } +
+\dot{q_i} - \sum_j \partialderiv{ \mathcal{L} }{ \dot{q_j} }
+\partialderiv{ \dot{q_j} }{ p_i } \]
+\[ \partialderiv{ \mathcal{H} }{ p_i } = \sum_j p_j
+\partialderiv{ \dot{q_j} }{ p_i } +
+\dot{q_i} - \sum_j p_j \partialderiv{ \dot{q_j} }{ p_i } \]
+\[ \dot{q_i} = \partialderiv{ \mathcal{H} }{ p_i } \]
+And now for the time derivative.
+\[ \frac{ d \mathcal{H} }{ dt } = \sum_j \dot{p_j} \partialderiv{ \mathcal{H} }{ p_j } + \sum_j \dot{q_j} \partialderiv{ \mathcal{H} }{ q_j } + \partialderiv{ \mathcal{H} }{ t } = \partialderiv{ \mathcal{H} }{ t } \]
+\[ \frac{ d \mathcal{H} }{ dt } = \partialderiv{H}{t} = \sum_j p_j \ddot{q_j} - \sum_j \partialderiv{ \mathcal{L} }{ \dot{q_j} } \ddot{q_j} - \partialderiv{ \mathcal{L} }{ t } = - \partialderiv{ \mathcal{L} }{ t }\]
+And it's very straight forward to relate the time derivative of an observable $O$ to the Hamiltonian.
+\[ \frac{dO}{dt} = \{O,H\} + \partialderiv{O}{t} \]
+\[ \{O,H\} = \sum_j \left[ \partialderiv{O}{q_j} \partialderiv{H}{p_j} - \partialderiv{O}{p_j} \partialderiv{H}{q_j} \right] \]
+
+\end{document}

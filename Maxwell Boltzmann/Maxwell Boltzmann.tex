@@ -1,0 +1,49 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{setspace}
+
+\begin{document}
+
+%Dillon Wong
+%\\
+
+Is the Maxwell-Boltzmann distribution applicable to any arbitrary potential in nonrelativistic classical mechanics?  If we believe in equal {\it a priori} probabilities in the micro-canonical ensemble, then for reasonably well-behaved potentials that don't depend on momentum (and with no magnetic fields because a vector potential messes up the derivation), I think we should believe in the Maxwell-Boltzmann distribution.
+\\  \\
+In 3D, the distribution of velocities is proportional to
+\begin{equation}
+v^2 e^{-\beta m v^2/2}
+\end{equation}
+In 2D, we lose a factor of $v$ because we integrate over a circle instead of a sphere\begin{equation}
+v e^{-\beta m v^2/2}
+\end{equation}
+And in 1D,
+\begin{equation}
+e^{-\beta m v^2/2}
+\end{equation}
+Let prove that the 1D simple harmonic oscillator obeys the Maxwell-Boltzmann distribution.  The Hamiltonian is
+\begin{equation}
+H=\frac{p^2}{2m}+\frac{1}{2}m \omega^2 x^2
+\end{equation}
+For simplicity, let's work in units where $m=\omega=1$.  Then the energy is
+\begin{equation}
+E=\frac{1}{2} (v^2+x^2)
+\end{equation}
+At energy E, and setting t=0 to coincide with zero speed, the velocity is given by
+\begin{equation}
+v(t)=\sqrt{2E}\sin(t)
+\end{equation}
+The velocity distribution of that oscillator is given by $P(v)dv=|2 dt/T|$, where $T=2\pi$ is the period, but I will drop constants whenever I want.  Using $dv=\sqrt{2E}\cos(t)$,
+\begin{equation}
+P(v)dv \propto \frac{dv}{\sqrt{2E}\cos(t)}=\frac{dv}{\sqrt{2E-(\sqrt{2E}\sin(t))^2}}=\frac{dv}{\sqrt{2E-v^2}}
+\end{equation}
+if $v^2<2E$.  Otherwise, $P(v)dv=0$.\\ \\
+We can now take a collection of oscillators connected to a heat bath.  The probability that an oscillator has energy $E$ is proportional to $e^{-\beta E}$.  We can then multiply $P(v)dv$ by $e^{-\beta E}$ and integrate over energies.  The density of states is constant.  The limits of integration are $v^2/2$ to infinity because oscillators with energy less than $v^2/2$ are never at velocity $v$.
+\begin{equation}
+\int_{v^2/2}^\infty \frac{e^{-\beta E}}{\sqrt{2E-v^2}}\,\mathrm{d}E = \sqrt{\frac{\pi}{2\beta}} e^{-\beta v^2/2}
+\end{equation}
+And we've recovered the 1D Maxwell-Boltzmann distribution!
+
+\end{document}

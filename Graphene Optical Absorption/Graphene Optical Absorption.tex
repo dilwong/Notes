@@ -1,0 +1,78 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{setspace}
+
+\setlength{\parindent}{0pt} 
+
+\begin{document}
+
+\textbf{The Optical Absorption of Graphene} \\
+
+The Hamiltonian for graphene is
+\begin{equation}
+H=v_F \vec{\sigma} \cdot (\vec{p}-\frac{e}{c}\vec{A})
+\end{equation}
+so the perturbation is
+\begin{equation}
+H_{int}=-\frac{v_F e}{c} \vec{\sigma} \cdot \vec{A}
+\end{equation}
+If we pick our light to be polarized in the x-direction
+\begin{equation}
+\vec{A}=\text{Re}[A \text{exp}[-i \omega t]\hat{x}]=\frac{A}{2}\text{exp}[-i \omega t]\hat{x}+\frac{A}{2}\text{exp}[i \omega t]\hat{x}
+\end{equation}
+then
+so the perturbation is
+\begin{equation}
+H_{int}=-\frac{v_F e A}{2 c} \sigma_x
+\end{equation}
+and so an optical transition matrix element is
+\begin{equation}
+\langle \psi_h|H_{int}|\psi_e \rangle=
+\left[ \frac{1}{\sqrt{2}} \left(
+\begin{array}{c}
+\text{exp}[-i \phi /2] \\
+-\text{exp}[i \phi /2]
+\end{array}
+\right) \right]^{\dagger}
+\left[ -\frac{v_F e A}{2 c} \left(
+\begin{array}{cc}
+0 & 1 \\
+1 & 0
+\end{array}
+\right) \right]
+\left[ \frac{1}{\sqrt{2}} \left(
+\begin{array}{c}
+\text{exp}[-i \phi /2] \\
+\text{exp}[i \phi /2]
+\end{array}
+\right) \right]
+\end{equation}
+squaring it gives
+\begin{equation}
+|\langle \psi_h|H_{int}|\psi_e \rangle|^2= \frac{v_F^2 e^2 A^2}{4 c^2} \text{sin}^2(\phi) 
+\end{equation}
+The average of $\text{sin}^2{\phi}$ is $\frac{1}{2}$, and applying Fermi's Golden Rule for the transition rate
+\begin{equation}
+P=\frac{2 \pi}{\hbar} |\langle \psi_h|H_{int}|\psi_e \rangle|^2 D(\hbar \omega/2)
+\end{equation}
+where $D(E)=\frac{2 E}{\pi \hbar^2 v_F^2}$ is the graphene electronic density of states.
+\begin{equation}
+P=\frac{e^2 A^2 \omega}{4 c^2 \hbar^2}
+\end{equation}
+Multiply by $\hbar \omega$ for the total energy density absorbed
+\begin{equation}
+E_{absorbed}=\frac{e^2 A^2 \omega^2}{4 c^2 \hbar}
+\end{equation}
+The incident energy is given by the standard formula (Gaussian Units)
+\begin{equation}
+E_{incident}=\frac{c}{4 \pi}|\text{Electric Field}|^2=\frac{\omega^2}{4 \pi c} A^2
+\end{equation}
+So the optical absorbtion coefficient of graphene is
+\begin{equation}
+\frac{E_{absorbed}}{E_{incident}}= \pi \frac{e^2}{\hbar c} = \pi \alpha = 2.3\%
+\end{equation}
+
+\end{document}
