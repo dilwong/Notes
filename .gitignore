@@ -3,3 +3,5 @@
 *.synctex.gz
 *.aux
 *.log
+*.pygstyle
+*.pygtex
