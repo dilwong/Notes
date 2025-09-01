@@ -1,0 +1,59 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{setspace}
+\usepackage{bm}
+
+\renewcommand{\vec}[1]{\boldsymbol{\mathbf{#1}}}
+
+\setlength{\parindent}{0pt} 
+
+\begin{document}
+
+\textbf{The Local Density of States} \\
+
+There's this thing called the ``Single Particle Green's Function" or ``Feynman Propagator" or ``Correlation Function".  It is defined as
+\begin{equation}
+G(\vec{r}',t',\vec{r},t) = -i \langle 0 | T\{\Psi(\vec{r},t) \Psi^\dagger(\vec{r}',t')\} | 0 \rangle
+\end{equation}
+Here, $\vec{r}$ and $\vec{r}'$ are position vectors, $| 0 \rangle$ is the many body ground state with $N$ electrons, and $\Psi^\dagger(\vec{r}',t')$ creates an electron while $\Psi(\vec{r},t)$ destroys an electron.  Ignore the $T$ thing; it's called ``time ordering" and is not relevant here.  I will let $t'=0$ and $t>0$ just 'cause I can, and I will set $\hbar=1$.  In the Heisenberg picture, operators evolve as
+\begin{equation}
+\Psi(\vec{r},t)=e^{iHt}\Psi(\vec{r})e^{-iHt}
+\end{equation}
+\begin{equation}
+\Psi^\dagger(\vec{r},t)=e^{-iHt}\Psi^\dagger(\vec{r})e^{iHt}
+\end{equation}
+so, putting this all together
+\begin{equation}
+G(\vec{r}',\vec{r},t) = -i \langle 0 | \Psi(\vec{r}) e^{-iHt} \Psi^\dagger(\vec{r}') | 0 \rangle = -i \langle \vec{r} | e^{-iHt} | \vec{r}' \rangle
+\end{equation}
+This has a physical interpretation.  It is the probability amplitude that an electron starts at position $\vec{r}'$, then is subject to time evolution for time $t$, and ends up at position $\vec{r}$. \\
+Now, lets suppose we have a complete set of $N+1$ electron energy eigenstates denoted by $\{ | \lambda \rangle \}$.  They have energies $\{ E_\lambda \}$.  The resolution of the identity says $1=\sum_\lambda{| \lambda \rangle \langle \lambda |}$.
+\begin{equation}
+G(\vec{r}',\vec{r},t) = -i \sum\limits_{\lambda \lambda'} \langle \vec{r} | \lambda \rangle \langle \lambda | e^{-iHt} | \lambda' \rangle \langle \lambda' | \vec{r}' \rangle = -i \sum\limits_{\lambda} e^{-i E_\lambda t} \psi^*_\lambda(\vec{r}') \psi_\lambda(\vec{r})
+\end{equation}
+Now let $\vec{r}'=\vec{r}$ because STM injects/removes electrons at the same position that it makes its measurement.  Also, an STM measurement is ``slow" in that a measurement timescale is much longer than the time it takes for dynamics on the surface to happen.  Thus, we should Fourier Transform the Green's Function.
+\begin{equation}
+G(\vec{r},\omega) = -i \sum\limits_{\lambda} \int^\infty_0 e^{i (\omega - E_\lambda) t} e^{-\delta t} |\psi_\lambda(\vec{r})|^2 dt
+\end{equation}
+Note that I put in $e^{-\delta t}$ to help the integral converge.  Physically, $1/\delta$ is the lifetime of a quasiparticle excitation.  We will take the limit wherer $\delta$ goes to zero at the end of the calculation.
+\begin{equation}
+G(\vec{r},\omega) = -i \sum\limits_{\lambda} \left[ \frac{e^{i (\omega - E_\lambda) t} e^{-\delta t}}{i(\omega-E_\lambda)-\delta} \right]_0^\infty | \psi_\lambda(\vec{r})|^2 = - \sum\limits_{\lambda} \left[ \frac{1}{\omega-E_\lambda+i\delta} \right] |\psi_\lambda(\vec{r})|^2
+\end{equation}
+Define the ``Spectral Function"
+\begin{equation}
+A(\vec{r},\omega)=\frac{1}{\pi} \text{Im}[G(\vec{r},\omega)] = \frac{1}{\pi} \sum\limits_{\lambda} \frac{\delta}{(\omega-E_\lambda)^2+\delta^2} |\psi_\lambda(\vec{r})|^2
+\end{equation}
+You might notice the similarity to the ARPES spectra function
+\begin{equation}
+A(k,\omega)=\frac{1}{\pi} \text{Im}[G(k,\omega)] = \frac{1}{\pi} \frac{\text{Im}\Sigma}{(\omega-E_k-\text{Re}\Sigma)^2+(\text{Im}\Sigma)^2}
+\end{equation}
+Anyway, take the $\delta \rightarrow 0$ limit, and $\frac{1}{\pi} \sum\limits_{\lambda} \frac{\delta}{(\omega-E_\lambda)^2+\delta^2} \rightarrow \delta(\omega - E_\lambda)$, where $\delta(\omega - E_\lambda)$ is the Dirac Delta Function.  Finally, we get the Local Density of States
+\begin{equation}
+A(\vec{r},\omega) = \sum\limits_{\lambda} |\psi_\lambda(\vec{r})|^2 \delta(\omega - E_\lambda) = \text{LDOS}(\vec{r},\omega)
+\end{equation}
+I probably lost some proportionality factors, but they don't matter because $dI/dV$ is only proportional to LDOS anyway.
+
+\end{document}

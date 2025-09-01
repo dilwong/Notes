@@ -1,0 +1,59 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{setspace}
+\usepackage{bm}
+
+\renewcommand{\vec}[1]{\boldsymbol{\mathbf{#1}}}
+
+\setlength{\parindent}{0pt} 
+
+\begin{document}
+
+\textbf{Elastic Tunneling Theory} \\
+
+I present here a variation of the Bardeen and Tersoff-Hamann theories of elastic tunneling in STM.  Suppose we have a system described by the Hamiltonian $H=H_0+H'$.  Then, by Fermi's Golden Rule, the rate of transitions from $H_0$ eigenstates $| i \rangle$ (the initial state with energy $E_i$) to $| f \rangle$ (a continuum of final states around energy $E_f$) is given by
+\begin{equation}
+dW=\sum_f \frac{2 \pi}{\hbar} | \langle f | H' | i \rangle |^2 \delta(E_f-E_i)
+\end{equation}
+Then, if we are tunneling from sample states $| s \rangle$ (with energies $E_s$) to STM tip states $| t \rangle$ (with energies $E_t$), the transition rate is
+\begin{equation}
+W=\sum_s \sum_t \frac{2 \pi}{\hbar} | \langle t | H' | s \rangle |^2 \delta(E_t-E_s) (1-f(E_t)) f(E_s)
+\end{equation}
+where $f(E)$ is the Fermi-Dirac Distribution. \\
+
+Now, lets calculate the tunneling matrix element $\langle t | H' | s \rangle$.  Define $U_s$ to be the potential due to the sample and $U_t$ to be due to the tip.  Also assume that $U_s$ and $U_t$ do not overlap in space, i.e. $U_s=0$ everywhere $U_t \ne 0$ and vice versa.  Then, by simple application of the Schr\"{o}dinger Equation,
+\begin{eqnarray}
+\langle t | H' | s \rangle &=& \int_{\tau} \psi_t^* U_t \psi_s d^3\vec{r}=\int_{\tau} \left( \frac{\hbar^2}{2m} \nabla^2 \psi_t^*-E_t \psi_t^* \right) \psi_s d^3\vec{r} \nonumber \\
+&=& \frac{\hbar^2}{2m} \int_{\tau} \left( \psi_t^* \nabla^2 \psi_s - \psi_s \nabla^2 \psi_t^* \right) d^3\vec{r} \nonumber \\
+&=& \frac{\hbar^2}{2m} \int_{\sigma} \left( \psi_t^* \nabla \psi_s - \psi_s \nabla \psi_t^* \right) \cdot d\vec{A}
+\end{eqnarray}
+where $\psi_t$ and $\psi_s$ represent tip and sample wavefunctions, respectively.  The above integrals are taken over the entire volume $\tau$ such that $U_t \ne 0$, except for the last line, where the Divergence Theorem converts our volume integral into a flux integral over a surface $\sigma$ between the tip and the sample.  Note that I assumed $E_t=E_s$ because the $\delta(E_t-E_s)$ factor in the transition rate requires this to be so. \\
+In the volume $\tau$, $(\nabla^2-\kappa^2)\psi_s=0$, where $\kappa=(2m(\phi-E_s)/\hbar^2)^{1/2}$ and $\phi$ is the sample work function.  If we assume the tip wavefunction obeys $(\nabla^2-\kappa^2)\psi_t=-\delta(\vec{r}-\vec{r}_0)$, then
+\begin{equation}
+\psi_t(\vec{r})=\frac{e^{-\kappa |\vec{r}-\vec{r}_0|}}{4 \pi |\vec{r}-\vec{r}_0|}
+\end{equation}
+In other words, we take the tip wavefunction to be an s-wave centered around the tip apex nucleus at $\vec{r}_0$.  With this assumption, we find that $\langle t | H' | s \rangle \propto \psi_s(\vec{r}_0)$.  Thus, the tunneling matrix element is proportional to the sample wavefunction evaluated at the tip apex. \\
+
+Assuming the tip states form a continuum, we can replace the sum over $t$ with an integral over $dE_t$,
+\begin{equation}
+W \propto \sum_s \int_{-\infty}^{\infty} | \psi_s(\vec{r}_0) |^2 D_t(E_t) \delta(E_t-E_s) (1-f(E_t)) f(E_s) dE_t
+\end{equation}
+where $D_t(E_t)$ is the tip density of states. \\
+If we apply a sample bias $V$, we must change this expression for $W$ to reflect the fact that the sample electrochemical potential shifts by $-eV$.  After doing the integral over $dE_t$,
+\begin{equation}
+W \propto \sum_s | \psi_s(\vec{r}_0) |^2 D_t(E_s) (1-f(E_s)) f(E_s+eV)
+\end{equation}
+The total tunneling current $I(V)$ is $-e$ multiplied by the difference of the transition rate from sample to tip and from tip to sample.  Thus,
+\begin{equation}
+I(V) \propto \sum_s | \psi_s(\vec{r}_0) |^2 D_t(E_s) (f(E_s)-f(E_s+eV))
+\end{equation}
+We assume the tip density of states is constant in the energy range of interest.  We also assume low temperature so that $\frac{\partial}{\partial V} f(E_s+eV) \approx -e \delta(eV-(E_s-E_F))$, where $E_F$ is the Fermi Energy.  Then,
+\begin{equation}
+\frac{dI}{dV} \propto \sum_s | \psi_s(\vec{r}_0) |^2 \delta(eV-(E_s-E_F)) = \text{LDOS}(\vec{r}_0,E_F+eV)
+\end{equation}
+Therefore, $\frac{dI}{dV}$ can be interpreted as the local density of states.
+
+\end{document}

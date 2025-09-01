@@ -1,0 +1,28 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{setspace}
+
+\setlength{\parindent}{0pt} 
+
+\begin{document}
+
+\textbf{Tunneling into Bloch States} \\
+
+According to the simple 1D model of tunneling through a square potential barrier, a sample state decays into vacuum as $\psi(z)=\psi(0) e^{-\kappa z}$, where $\kappa=(2m(\phi-E_s)/\hbar^2)^{1/2}$ and $\phi$ is the sample work function.  However, a correction must be made for Bloch states in a crystal.  For simplicity, suppose a Bloch state decaying into the vacuum has the form
+\begin{equation}
+\psi(x,y,z)=e^{i(k_x x + k_y y)} e^{-\gamma z}
+\end{equation}
+Then, plugging into the Schr\"{o}dinger Equation
+\begin{equation}
+\left( \frac{\partial^2}{\partial x^2}+\frac{\partial^2}{\partial z^2}+\frac{\partial^2}{\partial z^2} \right)\psi=\kappa^2 \psi
+\end{equation}
+we get
+\begin{equation}
+\gamma = \sqrt{\kappa^2 +k_{||}^2}
+\end{equation}
+where $k_{||}^2=k_x^2+k_y^2$ is the component of the crystal momentum parallel to the surface.  Thus, states with a larger parallel component of momentum will decay faster than states with a smaller parallel component of momentum.  This is very important in interpreting $dI/dV$ spectroscopy for graphene.
+
+\end{document}
